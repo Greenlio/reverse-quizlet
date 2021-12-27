@@ -25,5 +25,7 @@ module.exports.run = async (upStreamNumber, gameVersion, gamePin, token, botName
             image: null,
             username: botName,
         });
+
+        socket.disconnect()
     });
 };
