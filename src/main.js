@@ -9,7 +9,11 @@ module.exports.run = async (upStreamNumber, gameVersion, gamePin, token, botName
             gameId: gamePin,
             token: token
         },
-        transports: ['polling']
+        reconnectionAttempts: 5,
+        reconnectionDelay: 250,
+        reconnectionDelayMax: 2000,
+        timeout: 5000,
+        forceNew: true,
     });
 
     socket.on('connect', () => {
