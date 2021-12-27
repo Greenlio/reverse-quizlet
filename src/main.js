@@ -1,6 +1,6 @@
-const axios = require('axios');
 const io = require('socket.io-client');
-const colors = require('colors');
+const colors = require('colors')
+const chalk = require('chalk');
 
 module.exports.run = async (upStreamNumber, gameVersion, gamePin, token, botName) => {
     const socket = io('https://quizlet.com/', {
@@ -18,7 +18,7 @@ module.exports.run = async (upStreamNumber, gameVersion, gamePin, token, botName
 
     socket.on('connect', () => {
         if (socket.connected == true) {
-            console.log('Joined Game!'.green);
+            console.log('Joined Game '.green + 'with name ' + chalk.blue(botName));
         };
 
         socket.emit('player-join', {
@@ -26,6 +26,6 @@ module.exports.run = async (upStreamNumber, gameVersion, gamePin, token, botName
             username: botName,
         });
 
-        socket.disconnect()
+        socket.disconnect();
     });
 };
