@@ -1,9 +1,11 @@
 const io = require('socket.io-client');
-const colors = require('colors')
+const colors = require('colors');
 const chalk = require('chalk');
 
+const LiveEmitters = require('./assets/LiveEmitters');
+
 module.exports.run = async (upStreamNumber, gameVersion, gamePin, token, botName) => {
-    const socket = io('https://quizlet.com/', {
+    const socket = io(LiveEmitters.baseUrl, {
         path: `/multiplayer/${upStreamNumber}/${gameVersion}/${gamePin}/games/socket`,
         query: {
             gameId: gamePin,
@@ -16,12 +18,12 @@ module.exports.run = async (upStreamNumber, gameVersion, gamePin, token, botName
         forceNew: true,
     });
 
-    socket.on('connect', () => {
+    socket.on(LiveEmitters.connect, () => {
         if (socket.connected == true) {
             console.log('Joined Game '.green + 'with name ' + chalk.blue(botName));
         };
 
-        socket.emit('player-join', {
+        socket.emit(LiveEmitters.playerJoin, {
             image: null,
             username: botName,
         });
