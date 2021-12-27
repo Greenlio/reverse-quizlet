@@ -2,7 +2,7 @@
   "name": "reverse-quizlet",
   "version": "1.0.0",
   "description": "reverse engineering quizlet websockets",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
+    "chalk": "^4.1.2",
     "colors": "^1.4.0",
+    "events": "^3.3.0",
     "got": "^11.8.2",
     "prompts": "^2.4.2",
     "socket.io-client": "^4.4.0",
