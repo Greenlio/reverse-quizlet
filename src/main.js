@@ -20,7 +20,8 @@ module.exports.run = async (upStreamNumber, gameVersion, gamePin, token, botName
 
     socket.on(LiveEmitters.connect, () => {
         if (socket.connected == true) {
-            console.log('Joined Game '.green + 'with name ' + chalk.blue(botName));
+            console.log(chalk.bold.cyanBright('[SOCKET] Websocket connected!'));
+            console.log('Joined Game '.green + 'with name ' + chalk.cyan(botName));
         };
 
         socket.emit(LiveEmitters.playerJoin, {
