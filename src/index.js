@@ -27,14 +27,10 @@ const getGameVersion = require('./utils/getGameVersion');
         const gameVersion = calculations.calc(await getGameVersion(gamePin));
         const token = await getInfo();
 
-        if (response.username == "") {
-            console.log('You did not enter a bot name!'.red);
-        } else {
-            const botName = response.username;
 
-            main.run(upstreamNumber, gameVersion, gamePin, token.token, botName, token.playerId);
-        };
-        
+        const botName = response.username;
+
+        main.run(upstreamNumber, gameVersion, gamePin, token.token, botName, token.playerId);
     } else if (response.func[0] == 'flood') {
         const response = await prompts(floodQuestions);
 
@@ -44,7 +40,7 @@ const getGameVersion = require('./utils/getGameVersion');
             const gameVersion = calculations.calc(await getGameVersion(gamePin));
             const token = await getInfo();
 
-            flood(upstreamNumber, gameVersion, gamePin, token.token);
+            flood(upstreamNumber, gameVersion, gamePin, token.token, token.playerId);
         };
     };
 })();
