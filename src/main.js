@@ -4,7 +4,7 @@ const chalk = require('chalk');
 
 const LiveEmitters = require('./assets/LiveEmitters');
 
-module.exports.run = async (upStreamNumber, gameVersion, gamePin, token, botName) => {
+module.exports.run = async (upStreamNumber, gameVersion, gamePin, token, botName, playerId) => {
     const socket = io(LiveEmitters.baseUrl, {
         path: `/multiplayer/${upStreamNumber}/${gameVersion}/${gamePin}/games/socket`,
         query: {
@@ -28,7 +28,13 @@ module.exports.run = async (upStreamNumber, gameVersion, gamePin, token, botName
             image: null,
             username: botName,
         });
+    });
 
-        socket.disconnect();
+    socket.on(LiveEmitters.currentGameState, (data) => {
+        if (!data.players[playerId]) {
+            console.log('[SOCKET] Kicked from game!'.red)
+            console.log(chalk.cyanBright('[SOCKET] Closing websocket connection!'));
+            socket.disconnect();
+        };
     });
 };
