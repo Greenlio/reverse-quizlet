@@ -9,6 +9,7 @@ const calculations = require('./assets/calculations');
 const flood = require('./modules/flood');
 
 const getInfo = require('./utils/getInfo');
+const getSid = require('./utils/getSid');
 const getUpStreamNumber = require('./utils/getUpStreamNumber');
 const getGameVersion = require('./utils/getGameVersion');
 
@@ -26,9 +27,15 @@ const getGameVersion = require('./utils/getGameVersion');
         const upstreamNumber = await getUpStreamNumber(gamePin);
         const gameVersion = calculations.calc(await getGameVersion(gamePin));
         const token = await getInfo();
-        const botName = response.username;
 
-        main.run(upstreamNumber, gameVersion, gamePin, token.token, botName);
+        if (response.username == "") {
+            console.log('You did not enter a bot name!'.red);
+        } else {
+            const botName = response.username;
+
+            main.run(upstreamNumber, gameVersion, gamePin, token.token, botName);
+        };
+        
     } else if (response.func[0] == 'flood') {
         const response = await prompts(floodQuestions);
 
