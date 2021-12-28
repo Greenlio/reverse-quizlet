@@ -9,7 +9,6 @@ const calculations = require('./assets/calculations');
 const flood = require('./modules/flood');
 
 const getInfo = require('./utils/getInfo');
-const getSid = require('./utils/getSid');
 const getUpStreamNumber = require('./utils/getUpStreamNumber');
 const getGameVersion = require('./utils/getGameVersion');
 
