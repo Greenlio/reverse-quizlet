@@ -33,7 +33,7 @@ const getGameVersion = require('./utils/getGameVersion');
         } else {
             const botName = response.username;
 
-            main.run(upstreamNumber, gameVersion, gamePin, token.token, botName);
+            main.run(upstreamNumber, gameVersion, gamePin, token.token, botName, token.playerId);
         };
         
     } else if (response.func[0] == 'flood') {
