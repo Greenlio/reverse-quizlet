@@ -4,8 +4,6 @@ const crypto = require('crypto');
 
 const LiveEmitters = require('../assets/LiveEmitters');
 
-const sleep = require('../utils/sleep');
-
 async function flood(upStreamNumber, gameVersion, gamePin, token) {
     const botName = crypto.randomBytes(10).toString('hex');
 
@@ -31,8 +29,6 @@ async function flood(upStreamNumber, gameVersion, gamePin, token) {
             image: null,
             username: botName,
         });
-
-        socket.disconnect();
     });
 };
 
