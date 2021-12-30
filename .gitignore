@@ -2,3 +2,4 @@ node_modules
 single.js
 promptTesting.js
 src/utils/getSid.js
+.gitignore
